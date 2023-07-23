@@ -1,27 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject, } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserFormDialogComponent } from './components/user-form-dialog/user-form-dialog.component';
 import { User } from './models';
+import { UserService } from './user.service';
 
 
- const ELEMENT_DATA: User [] = [
-   {
-     id: 1,
-     name:'marcos',
-     surname:'rodriguez',
-     email:'mark@.com',
-     password:'123456',
-   },
-
-   {
-    id: 2,
-    name:'juan',
-    surname:'paez',
-    email:'paez@.com',
-    password:'123456',
-  }
-
- ];
 
 @Component({
   selector: 'app-users',
@@ -29,11 +12,17 @@ import { User } from './models';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent {
-  public users: User [] = ELEMENT_DATA;
+  public users: User [] = [];
 
   constructor(
-    private matDialog: MatDialog
-  ) {}
+    private matDialog: MatDialog,
+    private userService: UserService,
+    @Inject('IS_DEV') private isDev: boolean,
+  ){
+    this.users =  this.userService.getUsers()
+    console.log(this.isDev);
+    
+  }
 
 
 

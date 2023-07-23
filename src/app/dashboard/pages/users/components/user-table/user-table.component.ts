@@ -9,7 +9,7 @@ import { User } from '../../models';
 })
 export class UserTableComponent {
   
-  displayedColumns: string[] = ['fullName', 'email', 'password', "actions"];
+  displayedColumns: string[] = ['id','fullName', 'email', 'password', 'actions'];
 
   @Input()
   dataSource : User[]= [];

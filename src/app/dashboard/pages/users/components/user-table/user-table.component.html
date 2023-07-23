@@ -5,6 +5,13 @@
   
   
     <!-- name Column -->
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id }} </td>
+    </ng-container>
+
+
     <ng-container matColumnDef="fullName">
       <th mat-header-cell *matHeaderCellDef> NOMBRE COMPLETO </th>
       <td mat-cell *matCellDef="let element"> {{element | fullName }} </td>
