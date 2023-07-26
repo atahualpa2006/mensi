@@ -7,6 +7,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { UsersModule } from './pages/users/users.module';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { HomeModule } from './pages/home/home.module';
 
 
 
@@ -21,7 +23,9 @@ import { SharedModule } from '../shared/shared.module';
     MatToolbarModule,
     MatIconModule,
     UsersModule,
-    SharedModule
+    SharedModule,
+    RouterModule,
+    HomeModule,
   ],
 
   exports:[
