@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserFormDialogComponent } from './components/user-form-dialog/user-form-dialog.component';
 import { User } from './models';
 import { UserService } from './user.service';
-import { Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 
 
@@ -14,7 +14,10 @@ import { NotifierService } from 'src/app/core/services/notifier.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnDestroy {
-  public users: User [] = [];
+  // public users: User [] = [];
+
+  public users:Observable<User[]>;
+
   public allSubs : Subscription[] = [];
   public destroyed = new Subject<boolean>();
 
@@ -24,14 +27,19 @@ export class UsersComponent implements OnDestroy {
     private notifier:NotifierService,
     @Inject('IS_DEV') private isDev: boolean,
   ) {
+
+this.users = this.userService.getUsers();
+
     this.userService.loadUsers();
-    this.userService.getUsers().subscribe({
-      next: (v) => {
-        this.users = v;
-        this.notifier.showSuccess('carga exitosa');
+
+    // this.userService.getUsers().subscribe({
+
+    //   next: (users) => {
+    //     this.users = users;
+    //     // this.notifier.showSuccess('carga exitosa');
    
-      } 
-    });
+    //   } 
+    // });
     // console.log(this.isDev);
     
   }
@@ -56,17 +64,19 @@ export class UsersComponent implements OnDestroy {
         if (v) {
 
           
-          this.users = [
-            ...this.users,
-          {
-            id:this.users.length + 1,
+          // this.users = [
+          //   ...this.users,
+          
+            this.notifier.showSuccess('se cargaron correctamente los usuarios');
+           this.userService.createUser ({
+            // id:this.users.length + 1,
+            id: new Date().getTime(),
             name: v.name,
             email:v.email,
             password:v.password,
             surname:v.surname
-          }
+          });
 
-        ];
         console.log('Se recibio el valor: ', v);
       } else {
         console.log ('Se cancelo');
@@ -78,7 +88,7 @@ export class UsersComponent implements OnDestroy {
   onDeleteUser (userToDelete:User): void{
 
     if (confirm(`Seguro de eliminar a ${userToDelete.name}?`)) {
-      this.users = this.users.filter((u) => u.id !== userToDelete.id);
+      // this.users = this.users.filter((u) => u.id !== userToDelete.id);
 
     }
 
@@ -98,11 +108,11 @@ export class UsersComponent implements OnDestroy {
             next: (userUpdated) => {
               console.log(userUpdated) 
               if (userUpdated) {
-                this.users = this.users.map((user) => {
-                  return user.id === userToEdit.id
-                  ? { ...user, ...userUpdated }
-                  :user 
-                })
+                // this.users = this.users.map((user) => {
+                //   return user.id === userToEdit.id
+                //   ? { ...user, ...userUpdated }
+                //   :user 
+                // })
               }          
             
             },

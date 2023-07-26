@@ -7,6 +7,9 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 
 export class UserService {
+  createUser(arg0: { id: number; name: any; email: any; password: any; surname: any; }) {
+    throw new Error('Method not implemented.');
+  }
 
   private users:User[] = [
     {

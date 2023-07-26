@@ -8,7 +8,8 @@
 </div>
 
 
-<app-user-table [dataSource] = "users" 
+<app-user-table 
+[dataSource] = "( users | async ) || []" 
 (deleteUser)="onDeleteUser($event)"
 (editUser)="onEditUser($event)" >
 </app-user-table>
