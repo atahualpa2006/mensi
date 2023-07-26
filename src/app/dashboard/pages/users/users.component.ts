@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserFormDialogComponent } from './components/user-form-dialog/user-form-dialog.component';
 import { User } from './models';
 import { UserService } from './user.service';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, map, tap } from 'rxjs';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 
 
@@ -28,7 +28,17 @@ export class UsersComponent implements OnDestroy {
     @Inject('IS_DEV') private isDev: boolean,
   ) {
 
-this.users = this.userService.getUsers();
+this.users = this.userService.getUsers().pipe(
+  tap ((valor) => console.log('VALOR', valor )),
+  map ((valor) =>
+    valor.map((usuario) => ({
+      ...usuario,
+      name : usuario.name.toUpperCase(),
+      surname : usuario.surname.toUpperCase(),
+  }))
+  ),
+  tap((valor) => console.log('VALOR DESPUES DEL MAP', valor)),
+);
 
     this.userService.loadUsers();
 
