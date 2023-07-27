@@ -7,8 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardModule } from './dashboard/dashboard.module';
 import  eslocale  from '@angular/common/locales/es-AR'
 import { registerLocaleData } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
-
+registerLocaleData(eslocale);
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { registerLocaleData } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    DashboardModule
+    DashboardModule,
+    MatCardModule,
   ],
   providers: [
     {

@@ -7,37 +7,38 @@ import { UsersComponent } from './dashboard/pages/users/users.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path:'dashboard',
     component: DashboardComponent,
     children: [
       {
-        path: 'home',
-        component: HomeComponent,
+        path:'home',
+        component:HomeComponent,
       },
       {
         path:'users',
-        component: UsersComponent
+        component:UsersComponent,
       },
       {
-      path:'**',
-      redirectTo: 'home',
+        path:'**',
+        redirectTo:'home'
       }
-    ], 
-  },   
-  {
-      path: ' auth',
-      component : AuthComponent
- },
+    ],
 
+  },
   {
-  path: '**',
-  redirectTo : 'auth'
+    path:'auth',
+    component: AuthComponent,
+  },
+  {
+    path:'**',
+    redirectTo:'/auth',
   }
- ]
+
+ ];
 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

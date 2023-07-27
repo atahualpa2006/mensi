@@ -9,6 +9,8 @@ import { UsersModule } from './pages/users/users.module';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HomeModule } from './pages/home/home.module';
+import { MatListModule } from '@angular/material/list';
+import { AuthModule } from '../auth/auth.module';
 
 
 
@@ -26,6 +28,9 @@ import { HomeModule } from './pages/home/home.module';
     SharedModule,
     RouterModule,
     HomeModule,
+    MatListModule,
+    AuthModule,
+
   ],
 
   exports:[
