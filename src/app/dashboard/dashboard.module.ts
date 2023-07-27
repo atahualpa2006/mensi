@@ -11,12 +11,16 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { HomeModule } from './pages/home/home.module';
 import { MatListModule } from '@angular/material/list';
 import { AuthModule } from '../auth/auth.module';
+import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
+import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    NavMenuComponent,
+    ToolbarComponent
   ],
   imports: [
     CommonModule,
