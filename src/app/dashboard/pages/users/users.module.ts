@@ -6,6 +6,8 @@ import { UserFormDialogComponent } from './components/user-form-dialog/user-form
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { UserService } from './user.service';
 import { UserMockService } from './mocks/user-mocks.service';
+import { UserDetailComponent } from './pages/user-detail/user-detail.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,11 +15,13 @@ import { UserMockService } from './mocks/user-mocks.service';
   declarations: [
     UsersComponent,
     UserFormDialogComponent,
-    UserTableComponent
+    UserTableComponent,
+    UserDetailComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
+    RouterModule,
   ],
   exports: [
     UsersComponent,

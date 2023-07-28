@@ -33,12 +33,19 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Acciones </th>
         <td mat-cell *matCellDef="let element">
-          <button (click)="editUser.emit(element)" color = primary>
+
+          <button [routerLink] = "element.id" mat-icon-button color = "accent">
+            <mat-icon>visibility</mat-icon>
+          </button>
+
+          <button (click)="editUser.emit(element)" mat-icon-button color = "primary">
             <mat-icon>edit</mat-icon>
           </button>
+
           <button (click)="deleteUser.emit(element)" mat-icon-button color="warn">
             <mat-icon>delete</mat-icon>
-          </button> 
+          </button>
+
         </td>
       </ng-container>
   

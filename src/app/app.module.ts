@@ -8,6 +8,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import  eslocale  from '@angular/common/locales/es-AR'
 import { registerLocaleData } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(eslocale);
 
@@ -22,6 +24,8 @@ registerLocaleData(eslocale);
     BrowserAnimationsModule,
     DashboardModule,
     MatCardModule,
+    AuthModule,
+    SharedModule,
   ],
   providers: [
     {
