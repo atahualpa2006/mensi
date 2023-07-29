@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CreateUserData, UpDateUserData, User } from './models';
-import { BehaviorSubject, Observable, Subject, delay, of, take } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, delay, map, of, take } from 'rxjs';
 import { UserMockService } from './mocks/user-mocks.service';
+import { NotifierService } from 'src/app/core/services/notifier.service';
 
 
 const USER_DB : Observable <User[]> = of ([
@@ -32,30 +33,16 @@ const USER_DB : Observable <User[]> = of ([
 
 export class UserService {
 
-  private subjectUsers$ = new Subject <User []> ();
+  private _users$ = new BehaviorSubject <User[]> ([]);
 
-  private sendNotication$ = new Subject <string> ();
-
-  private _user$ = new BehaviorSubject <User[]> ([]);
-
-  private users$ = this._user$.asObservable ();
-  notifier: any;
+  private users$ = this._users$.asObservable ();
 
 
-  constructor() { 
-
-    this.sendNotication$.subscribe ({
-  next: (message) => alert (message),
-  });
-  }
-
-  sendNotification (notification: string) : void {
-    this.sendNotication$.next(notification);
-  }
+  constructor( private notifier : NotifierService) { }
 
   loadUsers(): void {
     USER_DB.subscribe ({
-      next: (usuariosFromDb) => this._user$.next(usuariosFromDb),
+      next: (usuariosFromDb) => this._users$.next(usuariosFromDb),
     });
   }
 
@@ -64,23 +51,32 @@ export class UserService {
     return this.users$;
   }
 
+  getUserById (id: number) : Observable < User | undefined>{
+    return this.users$.pipe(
+      map(( users ) => users.find((u) => u.id === id)),
+      take(1),
+    )
+  }
+
 
   createUser ( user: CreateUserData): void{
-    this._user$.pipe(take(1)).subscribe ({
-      next:(arrayActual) => {
-        this._user$.next([
-          ...arrayActual, 
-          {...user, id: arrayActual.length + 1},
-      ]);
-    },
-    });
-
-  }
+   
+        this.users$.pipe(take(1)).subscribe({
+          next:(arrayActual) => {
+            this._users$.next([
+              ...arrayActual,
+              {...user, id: arrayActual.length + 1},
+            ]);
+            this.notifier.showSuccess ('Usuario creado');
+            },
+          });
+        }
+   
 
   updateUserById (id: number, usuarioActualizado: UpDateUserData): void {
     this.users$.pipe(take(1)).subscribe({
      next: (arrayActual) => {
-      this._user$.next (
+      this._users$.next (
         arrayActual.map((u) =>
         u.id === id ? {...u, ...usuarioActualizado}: u
         )
@@ -91,9 +87,9 @@ export class UserService {
   }
 
   deleteUserById (id: number): void {
-    this._user$.pipe(take(1)).subscribe({
+    this._users$.pipe(take(1)).subscribe({
       next: (arrayActual) => {
-      this._user$.next(arrayActual.filter((u) => u.id !== id));
+      this._users$.next(arrayActual.filter((u) => u.id !== id));
       this.notifier.showSuccess('Usuario eliminado con exito')
       },
     });

@@ -13,6 +13,9 @@ message: string;
   providedIn: 'root'
 })
 export class NotifierService {
+  showError(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
 
   private notifier$ = new Subject <MyCustomNotification> ()
 

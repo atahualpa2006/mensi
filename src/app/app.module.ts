@@ -10,6 +10,8 @@ import { registerLocaleData } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { MatTableModule } from '@angular/material/table';
+import { AlumnsModule } from './dashboard/pages/alumns.module';
 
 registerLocaleData(eslocale);
 
@@ -25,7 +27,6 @@ registerLocaleData(eslocale);
     DashboardModule,
     MatCardModule,
     AuthModule,
-    SharedModule,
   ],
   providers: [
     {

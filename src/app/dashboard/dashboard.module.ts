@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { AuthModule } from '../auth/auth.module';
 import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
+import { AlumnsModule } from './pages/alumns/alumns.module';
 
 
 
@@ -34,6 +35,7 @@ import { ToolbarComponent } from './layout/toolbar/toolbar.component';
     HomeModule,
     MatListModule,
     AuthModule,
+    AlumnsModule,
 
   ],
 

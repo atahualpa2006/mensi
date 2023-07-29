@@ -1,0 +1,42 @@
+
+<h1  style="color: rgb(72, 15, 194) ;">Alumnos</h1>
+
+<button  (click)="onCreate" mat-flat-button color="warn" type="button" >
+  <mat-icon>add</mat-icon>
+  Ingresar alumno
+</button>
+
+
+<table mat-table [dataSource]="(data$ | async) || []" class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let alumn"> {{alumn.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dni">
+      <th mat-header-cell *matHeaderCellDef> DNI </th>
+      <td mat-cell *matCellDef="let alumn"> {{alumn.dni }} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+      <td mat-cell *matCellDef="let alumn"> {{alumn.name }} </td>
+    </ng-container>
+    <ng-container matColumnDef="surname">
+      <th mat-header-cell *matHeaderCellDef> APELLIDO </th>
+      <td mat-cell *matCellDef="let alumn"> {{alumn.surname }} </td>
+    </ng-container>
+    <ng-container matColumnDef="career">
+      <th mat-header-cell *matHeaderCellDef> CARRERA </th>
+      <td mat-cell *matCellDef="let alumn"> {{alumn.career }} </td>
+    </ng-container>
+
+
+  
+    <tr mat-header-row *matHeaderRowDef = "displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  
+
