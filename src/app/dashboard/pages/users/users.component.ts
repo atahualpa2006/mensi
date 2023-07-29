@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserFormDialogComponent } from './components/user-form-dialog/user-form-dialog.component';
 import { User } from './models';
 import { UserService } from './user.service';
-import { Observable, Subject, Subscription, map, tap } from 'rxjs';
+import { Observable, Subject, Subscription, map, take, tap } from 'rxjs';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 
 
@@ -28,29 +28,9 @@ export class UsersComponent implements OnDestroy {
     @Inject('IS_DEV') private isDev: boolean,
   ) {
 
-this.users = this.userService.getUsers().pipe(
-  tap ((valor) => console.log('VALOR', valor )),
-  map ((valor) =>
-    valor.map((usuario) => ({
-      ...usuario,
-      name : usuario.name.toUpperCase(),
-      surname : usuario.surname.toUpperCase(),
-  }))
-  ),
-  tap((valor) => console.log('VALOR DESPUES DEL MAP', valor)),
-);
-
     this.userService.loadUsers();
 
-    // this.userService.getUsers().subscribe({
-
-    //   next: (users) => {
-    //     this.users = users;
-    //     // this.notifier.showSuccess('carga exitosa');
-   
-    //   } 
-    // });
-    // console.log(this.isDev);
+    this.users = this.userService.getUsers();
     
   }
   ngOnDestroy(): void {
@@ -63,34 +43,23 @@ this.users = this.userService.getUsers().pipe(
   
 
   onCreateUser():void{
+
   this.matDialog
-  //se abre el modal
   .open(UserFormDialogComponent)
-  //despues que cierre
   .afterClosed()
-  //hago esto, recibo el valor ingresado
   .subscribe({
       next: (v) => {
         if (v) {
-
-          
-          // this.users = [
-          //   ...this.users,
-          
-            this.notifier.showSuccess('se cargaron correctamente los usuarios');
-           this.userService.createUser ({
-            // id:this.users.length + 1,
-            id: new Date().getTime(),
+         
+            this.notifier.showSuccess('Carga exitosa');
+            this.userService.createUser ({
+            
             name: v.name,
             email:v.email,
             password:v.password,
             surname:v.surname
           });
-
-        console.log('Se recibio el valor: ', v);
-      } else {
-        console.log ('Se cancelo');
-      }
+        }
       },
     });
   }
@@ -98,7 +67,8 @@ this.users = this.userService.getUsers().pipe(
   onDeleteUser (userToDelete:User): void{
 
     if (confirm(`Seguro de eliminar a ${userToDelete.name}?`)) {
-      // this.users = this.users.filter((u) => u.id !== userToDelete.id);
+    this.userService.deleteUserById(userToDelete.id);
+    this.notifier.showSuccess('Eliminacion exitosa');
 
     }
 
@@ -116,18 +86,13 @@ this.users = this.userService.getUsers().pipe(
         //hago esto, recibo el valor ingresado
         .subscribe({
             next: (userUpdated) => {
-              console.log(userUpdated) 
               if (userUpdated) {
-                // this.users = this.users.map((user) => {
-                //   return user.id === userToEdit.id
-                //   ? { ...user, ...userUpdated }
-                //   :user 
-                // })
-              }          
-            
-            },
-          });
 
+                this.userService.updateUserById (userToEdit.id, userUpdated);
+                this.notifier.showSuccess('Edicion exitosa');
+              }          
+            },
+        });
     }
   }
 
