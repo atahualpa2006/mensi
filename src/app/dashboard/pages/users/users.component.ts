@@ -33,13 +33,6 @@ export class UsersComponent implements OnDestroy {
     this.users = this.userService.getUsers();
     
   }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
-
-
-
-
   
 
   onCreateUser():void{
@@ -94,6 +87,13 @@ export class UsersComponent implements OnDestroy {
             },
         });
     }
+  
+    ngOnDestroy(): void {
+      throw new Error('Method not implemented.');
+    }
+
+
   }
+
 
 

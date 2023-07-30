@@ -25,10 +25,8 @@ const routes: Routes = [
             path:'',
             component: UsersComponent,
           },
-          {
-            path:':id',
-            component: UserDetailComponent,
-          },
+         
+
         ]
       },
       {
@@ -40,8 +38,17 @@ const routes: Routes = [
         redirectTo:'home'
       }
     ],
-
+    
   },
+
+  {
+    path:'user/:id',
+    component: UserDetailComponent,
+  },
+
+
+
+
   {
     path:'auth',
     component: AuthComponent,

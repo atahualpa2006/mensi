@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../models';
+import { Route, Router } from '@angular/router';
+import { identifierName } from '@angular/compiler';
 
 
 @Component({
@@ -20,4 +22,17 @@ export class UserTableComponent {
   @Output()
   editUser = new EventEmitter<User>();
 
+constructor (private router:Router ){
+  
+    
+  }
+  goToElement(id: number) {
+    this.router.navigate(['/user', id]);
+ 
+   }
 }
+
+
+ 
+
+
