@@ -11,35 +11,36 @@ import { AlumnsComponent } from './dashboard/pages/alumns/alumns.component';
 
 const routes: Routes = [
   {
-    path:'dashboard',
+    path: 'dashboard',
     component: DashboardComponent,
 
     children: [
       {
-        path:'home',
-        component:HomeComponent,
+        path: 'home',
+        component: HomeComponent,
       },
       {
-        path:'users',
+        path: 'users',
         children: [
           {
-            path:'',
+            path: '',
             component: UsersComponent,
           },
-         
-
-        ]
+          {
+            path: ':id',
+            component: UserDetailComponent,
+          },
+        ],
       },
       {
           path: 'alumns',
           component: AlumnsComponent,
       },
       {
-        path:'**',
-        redirectTo:'home'
-      }
+        path: '**',
+        redirectTo: 'home',
+      },
     ],
-    
   },
 
   {
@@ -51,34 +52,31 @@ const routes: Routes = [
 
 
   {
-    path:'auth',
+    path: 'auth',
     component: AuthComponent,
     children: [
       {
-        path:'login',
+        path: 'login',
         component: LoginComponent,
       },
       {
-        path:'register',
+        path: 'register',
         component: RegisterComponent,
       },
       {
-        path:'**',
-        redirectTo:'login',
+        path: '**',
+        redirectTo: 'login',
       },
-    ]
+    ],
   },
- {
-   path:'**',
-   redirectTo:'auth/login',
- },
-
-
- ];
-
+  {
+    path: '**',
+    redirectTo: '/auth/login',
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
