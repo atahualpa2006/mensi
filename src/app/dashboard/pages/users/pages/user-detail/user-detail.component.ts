@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { UserService } from '../../user.service';
@@ -7,36 +7,20 @@ import { UserService } from '../../user.service';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class UserDetailComponent {
+export class UserDetailComponent implements OnInit {
+  user!: any;
 
-  public user:User | null= null;
-  public userId?: number;
-  
-
-  constructor (
-    private activatedRoute: ActivatedRoute, 
-    private router: Router, 
-    private notification: NotifierService,
-    private usersService: UserService,
-    
-  ) {
-    if (!Number (this.activatedRoute.snapshot.params['id'])) {
-      this.router.navigate(['dashboard', 'users']);
-      this.notification.showError (`${this.activatedRoute.snapshot.params ['id']} no es un ID valido`);
-    } else  {
-      this.userId = Number( this.activatedRoute.snapshot.params['id']);
-      this.loadUser();
-    }
+  constructor(private route: ActivatedRoute) {
+    this.route.queryParams.subscribe((params) => {
+      if (params) {
+        this.user = params; // Convertimos el string a objeto usuario
+      }
+    });
   }
 
-  loadUser(): void {
-    if (this.userId) {
-      this.usersService.getUserById(this.userId).subscribe ({
-        next: (user) => console.log(user),
-      })
-    }
+  ngOnInit(): void {
+    console.log(this.user);
   }
 }
