@@ -28,13 +28,9 @@ export class UserTableComponent {
   constructor(private route: Router) {}
 
   goToUser(user: User): void {
-    this.route.navigate(['/dashboard/users', user.id], {
-      state: { data: user },
-    });
+    this.route.navigate(['/dashboard/users', user.id]);
+    // Convertir el objeto a una cadena JSON
+    const objectString = JSON.stringify(user);
+    localStorage.setItem('userData', objectString);
   }
 }
-
-
- 
-
-

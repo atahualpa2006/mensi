@@ -33,8 +33,8 @@ const routes: Routes = [
         ],
       },
       {
-          path: 'alumns',
-          component: AlumnsComponent,
+        path: 'alumns',
+        component: AlumnsComponent,
       },
       {
         path: '**',
@@ -42,14 +42,6 @@ const routes: Routes = [
       },
     ],
   },
-
-  {
-    path:'user/:id',
-    component: UserDetailComponent,
-  },
-
-
-
 
   {
     path: 'auth',

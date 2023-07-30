@@ -12,15 +12,16 @@ import { UserService } from '../../user.service';
 export class UserDetailComponent implements OnInit {
   user!: any;
 
-  constructor(private route: ActivatedRoute) {
-    this.route.queryParams.subscribe((params) => {
-      if (params) {
-        this.user = params; // Convertimos el string a objeto usuario
-      }
-    });
-  }
-
   ngOnInit(): void {
-    console.log(this.user);
+    const storedObjectString = localStorage.getItem('userData');
+
+    if (storedObjectString !== null) {
+      // Convertir la cadena JSON a un objeto
+      this.user = JSON.parse(storedObjectString);
+      console.log(this.user); // Mostrará el objeto recuperado
+    } else {
+      // Manejar el caso cuando no se encuentra ningún dato en el localStorage
+      console.log('No se encontraron datos almacenados en el localStorage.');
+    }
   }
 }
