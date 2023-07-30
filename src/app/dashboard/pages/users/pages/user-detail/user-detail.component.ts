@@ -1,22 +1,24 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models';
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class UserDetailComponent {
+export class UserDetailComponent implements OnInit {
+  user!: any;
 
-// public user: User | null = null  
+  constructor(private route: ActivatedRoute) {
+    this.route.queryParams.subscribe((params) => {
+      if (params) {
+        this.user = params; // Convertimos el string a objeto usuario
+      }
+    });
+  }
 
-constructor (private activatedroute: ActivatedRoute) {
-  (this.activatedroute.snapshot.params ['id'])
-}
-
-// loadUser(): void {}
-
-
+  ngOnInit(): void {
+    console.log(this.user);
+  }
 }
