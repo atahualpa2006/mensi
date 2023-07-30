@@ -29,7 +29,7 @@ export class UserTableComponent {
 
   goToUser(user: User): void {
     this.route.navigate(['/dashboard/users', user.id], {
-      queryParams: user,
+      state: { data: user },
     });
   }
 }
