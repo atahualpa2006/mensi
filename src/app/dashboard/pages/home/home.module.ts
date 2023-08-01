@@ -4,6 +4,8 @@ import { HomeComponent } from './home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { UsersRoutingModule } from '../users/users-routing.module';
 
 
 
@@ -16,6 +18,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
    SharedModule,
    MatCardModule,
    MatButtonModule,
+ 
   ],
   exports:[
     HomeComponent

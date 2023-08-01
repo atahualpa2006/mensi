@@ -9,6 +9,7 @@ import { UserService } from '../../user.service';
   templateUrl: './user-detail.component.html',
   styles: [],
 })
+
 export class UserDetailComponent implements OnInit {
   user!: any;
 

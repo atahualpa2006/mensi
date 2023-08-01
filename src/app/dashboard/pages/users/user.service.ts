@@ -51,7 +51,7 @@ export class UserService {
     return this.users$;
   }
 
-  getUserById (id: number) : Observable < User | undefined>{
+  getUserById (id: number) : Observable < User | undefined> {
     return this.users$.pipe(
       map(( users ) => users.find((u) => u.id === id)),
       take(1),

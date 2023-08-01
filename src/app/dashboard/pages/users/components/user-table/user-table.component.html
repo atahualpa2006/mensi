@@ -29,7 +29,8 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Acciones</th>
     <td mat-cell *matCellDef="let element">
-      <button (click)="goToUser(element)" mat-icon-button color="accent">
+
+      <button [routerLink]="element.id" mat-icon-button color="accent">
         <mat-icon>visibility</mat-icon>
       </button>
 
