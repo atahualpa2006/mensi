@@ -8,6 +8,7 @@ import { UserService } from './user.service';
 import { UserMockService } from './mocks/user-mocks.service';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { RouterModule } from '@angular/router';
+import { UsersRoutingModule } from './users-routing.module';
 
 
 
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     SharedModule,
     RouterModule,
+    UsersRoutingModule,
   ],
   exports: [
     UsersComponent,

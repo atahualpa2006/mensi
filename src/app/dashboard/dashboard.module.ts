@@ -14,6 +14,8 @@ import { AuthModule } from '../auth/auth.module';
 import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { AlumnsModule } from './pages/alumns/alumns.module';
+import { DashboardRoutingModule } from './dashboard-routing.module';
+import { FoldersModule } from './pages/folders/folders.module';
 
 
 
@@ -36,12 +38,10 @@ import { AlumnsModule } from './pages/alumns/alumns.module';
     MatListModule,
     AuthModule,
     AlumnsModule,
+    DashboardRoutingModule,
 
   ],
-
-  exports:[
-    DashboardComponent,
-    
-  ]
+   
+  exports:[DashboardComponent],
 })
 export class DashboardModule { }
