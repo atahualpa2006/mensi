@@ -4,26 +4,29 @@ import Swal from 'sweetalert2';
 
 interface MyCustomNotification {
   type:'success' | 'error' |'info';
-title: string;
-message: string;
+  title: string;
+  message: string;
 
 }
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class NotifierService {
-  showError(arg0: string) {
-    throw new Error('Method not implemented.');
-  }
+
+  // showError(MyCustomNotification: string) {
+  //   throw new Error('Method not implemented.');
+  // }
 
   private notifier$ = new Subject <MyCustomNotification> ()
 
 
   constructor() {
+
     this.notifier$.subscribe ({
       next:(myNotification) => {
-        Swal.fire(myNotification.title, myNotification.message, myNotification.type)
+        Swal.fire(myNotification.title, myNotification.message, myNotification.type);
       }
     })
    }
@@ -33,6 +36,15 @@ export class NotifierService {
     type:'success',
     message,
     title 
-   });
+    });
   }
+
+   showError ( message: string, title ='Error'): void {
+    this.notifier$.next({
+    type:'error',
+    message,
+    title 
+    });
+
+   }
   }

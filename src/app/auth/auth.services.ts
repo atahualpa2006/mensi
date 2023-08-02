@@ -8,9 +8,10 @@ import { Router } from "@angular/router";
 
 
 @Injectable ({ providedIn: 'root'})
-export class authservice {
+export class  AuthService {
 
-    private authUser$ = new BehaviorSubject <User | null> (null);
+    private _authUser$ = new BehaviorSubject <User | null> (null);
+    public authUser$ = this._authUser$.asObservable();
 
     constructor (private notifier: NotifierService, private router: Router) {}
 
@@ -26,11 +27,11 @@ export class authservice {
 
         if (payLoad.email === MOCK_USER.email && payLoad.password === MOCK_USER.password) {
 
-            this.authUser$.next(MOCK_USER);
+            this._authUser$.next(MOCK_USER);
             this.router.navigate(['/dashboard/home']);
         } else {
             this.notifier.showError('Email o contrasena invalida');
-            this.authUser$.next(null);
+            this._authUser$.next(null);
         }
 
     }    
