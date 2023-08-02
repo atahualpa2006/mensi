@@ -10,8 +10,8 @@ import { AuthService } from '../../auth.services';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  public emailControl = new FormControl ('', [Validators.required, Validators.email]);
-  public passwordControl = new FormControl('', [Validators.required]);
+  public emailControl = new FormControl ('mock@mail.com', [Validators.required, Validators.email]);
+  public passwordControl = new FormControl('1', [Validators.required]);
 
   public loginForm = new FormGroup({
     email: this.emailControl,
