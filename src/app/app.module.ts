@@ -7,6 +7,7 @@ import  eslocale  from '@angular/common/locales/es-AR'
 import { registerLocaleData } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 registerLocaleData(eslocale);
@@ -21,9 +22,9 @@ registerLocaleData(eslocale);
     AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule,
-    // DashboardModule,
+    HttpClientModule,
     MatCardModule,
-    // AuthModule,
+   
   ],
   providers: [
     {
