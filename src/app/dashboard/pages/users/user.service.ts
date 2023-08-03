@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CreateUserData, UpDateUserData, User } from './models';
-import { BehaviorSubject, Observable, Subject, delay, map, of, take } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, delay, map, mergeMap, of, take } from 'rxjs';
 import { UserMockService } from './mocks/user-mocks.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { HttpClient } from '@angular/common/http';
@@ -61,6 +61,11 @@ export class UserService {
     return this.users$;
   }
 
+    
+
+
+
+
   getUserById (id: number) : Observable < User | undefined> {
     return this.users$.pipe(
       map(( users ) => users.find((u) => u.id === id)),
@@ -71,17 +76,39 @@ export class UserService {
 
   createUser ( user: CreateUserData): void{
    
-        this.users$.pipe(take(1)).subscribe({
-          next:(arrayActual) => {
-            this._users$.next([
-              ...arrayActual,
-              {...user, id: arrayActual.length + 1},
-            ]);
-            this.notifier.showSuccess ('Usuario creado');
-            },
-          });
-        }
+  //       this.users$.pipe(take(1)).subscribe({
+  //         next:(arrayActual) => {
+  //           this._users$.next([
+  //             ...arrayActual,
+  //             {...user, id: arrayActual.length + 1},
+  //           ]);
+  //           this.notifier.showSuccess ('Usuario creado');
+  //           },
+  //         });
+
+  // con HTTP client
+
+          this.httpClient.post  <User>  ( 'http://localhost:3000/users', user)
+          .pipe(
+            mergeMap((userCreate) => this.users$.pipe(
+              take(1),
+              map(
+                (arrayActual) => [...arrayActual, userCreate])
+              )
+            )
+          )
+          .subscribe({
+            next: (arrayActualizado) => {
+              this._users$.next(arrayActualizado);
+            }
+          })  
+          }
+          
+
+
+        
    
+
 
   updateUserById (id: number, usuarioActualizado: UpDateUserData): void {
     this.users$.pipe(take(1)).subscribe({

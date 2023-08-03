@@ -1,29 +1,28 @@
 {
-  "users":[
-          {
-        "id": 4,
+  "users": [
+    {
+      "id": 4,
       "name": "diego",
-       "surname":"mensi",
-     "email":"diego@gmail.com",
-     "password":"6"
-        }
-      ],
-
-  "posts": [
+      "surname": "mensi",
+      "email": "diego@gmail.com",
+      "password": "6"
+    },
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "name": "qqqqqqqqq",
+      "email": "qqqqqqqqqqqqqq",
+      "password": "qqqqqqqqqqq",
+      "surname": "qqqqqqqqqqqq",
+      "id": 5
+    },
+    {
+      "name": "fffffffff",
+      "email": "fdddddddddd",
+      "password": "dddddddddddd",
+      "surname": "ffffffffffff",
+      "id": 6
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  "alumns": [
+    {}
+  ]
 }
