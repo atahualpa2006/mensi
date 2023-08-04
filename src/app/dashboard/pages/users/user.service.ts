@@ -124,11 +124,34 @@ export class UserService {
   }
 
   deleteUserById (id: number): void {
-    this._users$.pipe(take(1)).subscribe({
-      next: (arrayActual) => {
-      this._users$.next(arrayActual.filter((u) => u.id !== id));
-      this.notifier.showSuccess('Usuario eliminado con exito')
-      },
-    });
+    // this._users$.pipe(take(1)).subscribe({
+    //   next: (arrayActual) => {
+    //   this._users$.next(arrayActual.filter((u) => u.id !== id));
+    //   this.notifier.showSuccess('Usuario eliminado con exito')
+    //   },
+    // });
+
+      // http client
+
+      // Logica de resolucion
+// 1- comunicarme con la API y eliminar usuario
+// 2- actualizar listado (array de usuario)
+
+            // OBSERVABLE 1
+
+    this.httpClient.delete('http://localhost:3000/users/' + id)
+    .pipe(
+      mergeMap(
+        // en este punto la comunicacion ya sucedio (punto 1)
+              // OBSERVABLE 2
+        (responseUserDelete) => this.users$.pipe(
+          take(1),
+          map ((arrayActual) => arrayActual.filter((u) => u.id !==id))
+        )
+      )
+    ).subscribe({
+      next: (arrayActualizado) => this._users$.next(arrayActualizado),
+    })
+
   }
 }
