@@ -44,10 +44,24 @@ export class UserService {
   loadUsers(): void {
     this.httpClient.get <User[]>(' http://localhost:3000/users').subscribe({
       next: (response) => {
-        // 
+        // si todo sale bien , sigue esta logica
         this._users$.next(response);
+      },
+      error: () =>{
+        // si todo sale mal
+        this.notifier.showError('Error en la carga');
+
+      },
+
+
+      complete:() => {
+        // siempre que el observable se completa
+
+
 
       }
+
+
     })
 
 
@@ -111,16 +125,22 @@ export class UserService {
 
 
   updateUserById (id: number, usuarioActualizado: UpDateUserData): void {
-    this.users$.pipe(take(1)).subscribe({
-     next: (arrayActual) => {
-      this._users$.next (
-        arrayActual.map((u) =>
-        u.id === id ? {...u, ...usuarioActualizado}: u
-        )
-      );
-      this.notifier.showSuccess('Usuario actualizado con exito')
-     }, 
-    });
+    // this.users$.pipe(take(1)).subscribe({
+    //  next: (arrayActual) => {
+    //   this._users$.next (
+    //     arrayActual.map((u) =>
+    //     u.id === id ? {...u, ...usuarioActualizado}: u
+    //     )
+    //   );
+    //   this.notifier.showSuccess('Usuario actualizado con exito')
+    //  }, 
+    // });
+
+  //  con this.httpClient // 
+    this.httpClient.put('http://localhost:3000/users/' + id, usuarioActualizado ).subscribe({
+      next :() => this.loadUsers(),
+    })
+  
   }
 
   deleteUserById (id: number): void {
