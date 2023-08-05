@@ -5,12 +5,12 @@ import { UserMockService } from './mocks/user-mocks.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { generateRandomString } from 'src/app/shared/utils/helpers';
-import { enviroment } from 'src/environments/enviroment.prod';
+import { environment } from 'src/environments/environment.prod';
 
 
 // const USER_DB : Observable <User[]> = of ([
 
-//   {
+//   {...
 //     id: 1,
 //     name:'marcos',
 //     surname:'rodriguez',
@@ -49,7 +49,8 @@ export class UserService {
 
   loadUsers(): void {
     this._isLoading$.next(true);
-    this.httpClient.get <User[]> (enviroment.baseApiUrl + '/users' , {
+    // this.httpClient.get <User[]> (' http://localhost:3000/users',{
+    this.httpClient.get <User[]> (environment.baseApiUrl + '/users' , {
       headers: new HttpHeaders({
         'token': '123456789'
       }),
@@ -119,7 +120,7 @@ export class UserService {
     const token = generateRandomString(20);
 
 
-          this.httpClient.post  <User>  ( enviroment.baseApiUrl + '/ users', {...user, token })
+          this.httpClient.post  <User>  ( environment.baseApiUrl + '/ users', {...user, token })
           .pipe(
             mergeMap((userCreate) => this.users$.pipe(
               take(1),
@@ -154,7 +155,7 @@ export class UserService {
     // });
 
   //  con this.httpClient // 
-    this.httpClient.put(enviroment.baseApiUrl + '/users/' + id, usuarioActualizado ).subscribe({
+    this.httpClient.put(environment.baseApiUrl + '/users/' + id, usuarioActualizado ).subscribe({
       next :() => this.loadUsers(),
     })
   
@@ -176,7 +177,7 @@ export class UserService {
 
             // OBSERVABLE 1
 
-    this.httpClient.delete(enviroment.baseApiUrl + '/users/' + id)
+    this.httpClient.delete(environment.baseApiUrl + '/users/' + id)
     .pipe(
       mergeMap(
         // en este punto la comunicacion ya sucedio (punto 1)
