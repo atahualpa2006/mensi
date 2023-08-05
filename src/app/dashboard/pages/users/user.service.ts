@@ -3,7 +3,9 @@ import { CreateUserData, UpDateUserData, User } from './models';
 import { BehaviorSubject, Observable, Subject, delay, map, mergeMap, of, take } from 'rxjs';
 import { UserMockService } from './mocks/user-mocks.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { generateRandomString } from 'src/app/shared/utils/helpers';
+import { enviroment } from 'src/environments/enviroments.prod';
 
 
 // const USER_DB : Observable <User[]> = of ([
@@ -38,11 +40,21 @@ export class UserService {
 
   private users$ = this._users$.asObservable ();
 
+  private _isLoading$ = new BehaviorSubject(false);
+
+  public isLoading$ = this._isLoading$.asObservable();
+
 
   constructor( private notifier : NotifierService, private httpClient : HttpClient) { }
 
   loadUsers(): void {
-    this.httpClient.get <User[]>(' http://localhost:3000/users').subscribe({
+    this._isLoading$.next(true);
+    this.httpClient.get <User[]> (enviroment.baseApiUrl + '/users' , {
+      headers: new HttpHeaders({
+        'token': '123456789'
+      }),
+    })
+    .subscribe({
       next: (response) => {
         // si todo sale bien , sigue esta logica
         this._users$.next(response);
@@ -102,7 +114,12 @@ export class UserService {
 
   // con HTTP client
 
-          this.httpClient.post  <User>  ( 'http://localhost:3000/users', user)
+// generar token
+
+    const token = generateRandomString(20);
+
+
+          this.httpClient.post  <User>  ( enviroment.baseApiUrl + '/ users', {...user, token })
           .pipe(
             mergeMap((userCreate) => this.users$.pipe(
               take(1),
@@ -137,7 +154,7 @@ export class UserService {
     // });
 
   //  con this.httpClient // 
-    this.httpClient.put('http://localhost:3000/users/' + id, usuarioActualizado ).subscribe({
+    this.httpClient.put(enviroment.baseApiUrl + '/users/' + id, usuarioActualizado ).subscribe({
       next :() => this.loadUsers(),
     })
   
@@ -159,7 +176,7 @@ export class UserService {
 
             // OBSERVABLE 1
 
-    this.httpClient.delete('http://localhost:3000/users/' + id)
+    this.httpClient.delete(enviroment.baseApiUrl + '/users/' + id)
     .pipe(
       mergeMap(
         // en este punto la comunicacion ya sucedio (punto 1)

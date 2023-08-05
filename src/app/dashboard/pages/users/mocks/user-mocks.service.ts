@@ -10,15 +10,10 @@ export class UserMockService{
             surname:'falso',
             email:'falso@.com',
             password:'falso',
+            token:'',
           },
        
-          {
-           id: 2,
-           name:'fake',
-           surname:'fake',
-           email:'fake@.com',
-           password:'fake',
-         },
+
         ];
    
     getUsers() : User [] {
