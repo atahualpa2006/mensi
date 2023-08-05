@@ -72,7 +72,7 @@ export class  AuthService {
                         let message = 'Error inesperado';
                         if (err.status=== 500) {
                         }
-                        if (err.status === 400) {
+                        if (err.status === 401) {
                             message ='Email o contrasena invalida';
                         }
                     this.notifier.showError (message)

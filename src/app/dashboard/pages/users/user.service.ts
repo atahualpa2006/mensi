@@ -5,7 +5,7 @@ import { UserMockService } from './mocks/user-mocks.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { generateRandomString } from 'src/app/shared/utils/helpers';
-import { enviroment } from 'src/environments/enviroments.prod';
+import { enviroment } from 'src/environments/enviroment.prod';
 
 
 // const USER_DB : Observable <User[]> = of ([

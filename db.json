@@ -5,16 +5,13 @@
       "surname": "mensi",
       "email": "diego@gmail.com",
       "password": "0",
-      "id": 4
+      "token":"25U3gRQg0Efk97418h0l",
+      "id": 1
     },
     {
-      "name": "hola",
-      "email": "sdfa@e.com",
-      "password": "2",
-      "surname": "diego",
-      "token": "25U3gRQg0Efk97418h0l",
-      "id": 6
+   
     }
+ 
   ],
   "alumns": [
     {}
