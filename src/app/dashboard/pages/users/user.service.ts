@@ -52,7 +52,7 @@ export class UserService {
   loadUsers(): void {
     this._isLoading$.next(true);
     // this.httpClient.get <User[]> (' http://localhost:3000/users',{
-    this.httpClient.get <User[]> ( environment + '/users' , {
+    this.httpClient.get <User[]> ( environment.baseApiUrl + '/users' , {
       headers: new HttpHeaders({
         'token': '123456789'
       }),
