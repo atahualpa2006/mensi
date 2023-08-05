@@ -5,7 +5,9 @@ import { UserMockService } from './mocks/user-mocks.service';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { generateRandomString } from 'src/app/shared/utils/helpers';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
+
+
 
 
 // const USER_DB : Observable <User[]> = of ([
@@ -50,7 +52,7 @@ export class UserService {
   loadUsers(): void {
     this._isLoading$.next(true);
     // this.httpClient.get <User[]> (' http://localhost:3000/users',{
-    this.httpClient.get <User[]> (environment.baseApiUrl + '/users' , {
+    this.httpClient.get <User[]> ( environment + '/users' , {
       headers: new HttpHeaders({
         'token': '123456789'
       }),

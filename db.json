@@ -1,12 +1,15 @@
 {
   "users": [
     {
-      "name": "diego",
+      "name": "diegos",
       "surname": "mensi",
       "email": "diego@gmail.com",
       "password": "0",
+      "token":"25U3gRQg0Efk97418h0l",
       "id": 1
     }
+    
+  
   ],
   "alumns": [
     {}
