@@ -104,27 +104,13 @@ export class UserService {
 
 
   createUser ( user: CreateUserData): void{
-   
-  //       this.users$.pipe(take(1)).subscribe({
-  //         next:(arrayActual) => {
-  //           this._users$.next([
-  //             ...arrayActual,
-  //             {...user, id: arrayActual.length + 1},
-  //           ]);
-  //           this.notifier.showSuccess ('Usuario creado');
-  //           },
-  //         });
-
-  // con HTTP client
-
-// generar token
-
     const token = generateRandomString(20);
 
-
-          this.httpClient.post  <User>  ( environment.baseApiUrl + '/ users', {...user, token })
+          this.httpClient
+          .post  <User>  (`${environment.baseApiUrl}/users`, { ...user, token })
           .pipe(
-            mergeMap((userCreate) => this.users$.pipe(
+            mergeMap((userCreate) => 
+            this.users$.pipe(
               take(1),
               map(
                 (arrayActual) => [...arrayActual, userCreate])
@@ -145,45 +131,22 @@ export class UserService {
 
 
   updateUserById (id: number, usuarioActualizado: UpDateUserData): void {
-    // this.users$.pipe(take(1)).subscribe({
-    //  next: (arrayActual) => {
-    //   this._users$.next (
-    //     arrayActual.map((u) =>
-    //     u.id === id ? {...u, ...usuarioActualizado}: u
-    //     )
-    //   );
-    //   this.notifier.showSuccess('Usuario actualizado con exito')
-    //  }, 
-    // });
-
-  //  con this.httpClient // 
-    this.httpClient.put(environment.baseApiUrl + '/users/' + id, usuarioActualizado ).subscribe({
+  console.log('updateUserById' , id, usuarioActualizado);
+    this.httpClient
+    .put(`${environment.baseApiUrl}/users/${id}`, usuarioActualizado )
+    .subscribe({
       next :() => this.loadUsers(),
-    })
-  
+      error: (err) => {
+        console.error('Error updating user:' , err);
+      },
+    }); 
   }
 
   deleteUserById (id: number): void {
-    // this._users$.pipe(take(1)).subscribe({
-    //   next: (arrayActual) => {
-    //   this._users$.next(arrayActual.filter((u) => u.id !== id));
-    //   this.notifier.showSuccess('Usuario eliminado con exito')
-    //   },
-    // });
-
-      // http client
-
-      // Logica de resolucion
-// 1- comunicarme con la API y eliminar usuario
-// 2- actualizar listado (array de usuario)
-
-            // OBSERVABLE 1
 
     this.httpClient.delete(environment.baseApiUrl + '/users/' + id)
     .pipe(
       mergeMap(
-        // en este punto la comunicacion ya sucedio (punto 1)
-              // OBSERVABLE 2
         (responseUserDelete) => this.users$.pipe(
           take(1),
           map ((arrayActual) => arrayActual.filter((u) => u.id !==id))
