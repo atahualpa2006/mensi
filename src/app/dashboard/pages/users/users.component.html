@@ -1,6 +1,6 @@
 <div class="mb-5">
     <button (click)="onCreateUser()" mat-flat-button color="primary" type="button">
-    
+
     <mat-icon>add</mat-icon>
     Crear Usuario
 
@@ -8,8 +8,8 @@
 </div>
 
 
-<app-user-table 
-[dataSource] = "( users | async ) || []" 
+<app-user-table
+[dataSource] = "( users | async ) || []"
 (deleteUser)="onDeleteUser($event)"
 (editUser)="onEditUser($event)" >
 </app-user-table>

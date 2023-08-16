@@ -9,20 +9,27 @@
       "id": 1
     },
     {
-      "name": "ssssss",
-      "email": "dddddddddd@gmail.com",
-      "password": "231",
-      "surname": "dddddddddddddddd",
-      "token": "PIE0lkY031IThaagjPP8",
-      "id": 2
-    },
-    {
       "name": "usuario",
       "email": "usuario@gmail.com",
       "password": "1",
       "surname": "usuario",
       "token": "QY1jsOYhslsYEYllT87a",
       "id": 4
+    },
+    {
+      "name": "admin",
+      "surname": "admines",
+      "email": "admin@gmail.com",
+      "password": "0",
+      "id": 5
+    },
+    {
+      "name": "usuario",
+      "email": "usuario@gmail.com",
+      "password": "1",
+      "surname": "usuario",
+      "token": "TY45k6Q9Ohd36688g0Ol",
+      "id": 6
     }
   ],
   "alumns": [

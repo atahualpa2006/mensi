@@ -53,6 +53,7 @@ export class UserService {
     this._isLoading$.next(true);
     // this.httpClient.get <User[]> (' http://localhost:3000/users',{
     this.httpClient.get <User[]> ( environment.baseApiUrl + '/users' , {
+
       headers: new HttpHeaders({
         'token': '123456789'
       }),
@@ -90,7 +91,7 @@ export class UserService {
     return this.users$;
   }
 
-    
+
 
 
 
@@ -109,7 +110,7 @@ export class UserService {
           this.httpClient
           .post  <User>  (`${environment.baseApiUrl}/users`, { ...user, token })
           .pipe(
-            mergeMap((userCreate) => 
+            mergeMap((userCreate) =>
             this.users$.pipe(
               take(1),
               map(
@@ -120,14 +121,14 @@ export class UserService {
           .subscribe({
             next: (arrayActualizado) => {
               this._users$.next(arrayActualizado);
-            }
-          })  
+            },
+          });
           }
-          
 
 
-        
-   
+
+
+
 
 
   updateUserById (id: number, usuarioActualizado: UpDateUserData): void {
@@ -139,7 +140,7 @@ export class UserService {
       error: (err) => {
         console.error('Error updating user:' , err);
       },
-    }); 
+    });
   }
 
   deleteUserById (id: number): void {

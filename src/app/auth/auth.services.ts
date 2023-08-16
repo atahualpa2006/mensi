@@ -16,7 +16,7 @@ export class  AuthService {
     public authUser$ = this._authUser$.asObservable();
 
     constructor (
-        private notifier: NotifierService, 
+        private notifier: NotifierService,
         private router: Router,
         private httpClient:HttpClient ) {}
 
@@ -41,8 +41,6 @@ export class  AuthService {
 
         login (payLoad: loginPayload): void {
 
-// metodo http clien con usuario registrado
-
             this.httpClient.get <User[]> ('http://localhost:3000/users', {
                 params: {
                     email: payLoad.email || '',
@@ -59,10 +57,10 @@ export class  AuthService {
                         this.router.navigate(['/dashboard/home']);
                         localStorage.setItem('token', authUser.token);
                     }else{
-                    //   login invalido  
+                    //   login invalido
                     this.notifier.showError('Email o contrasena invalida');
                     this._authUser$.next(null);
-                    
+
                     }
                 },
 
@@ -72,7 +70,7 @@ export class  AuthService {
                         let message = 'Error inesperado';
                         if (err.status=== 500) {
                         }
-                        if (err.status === 401) {
+                        if (err.status === 400) {
                             message ='Email o contrasena invalida';
                         }
                     this.notifier.showError (message)
@@ -97,7 +95,7 @@ export class  AuthService {
         //     this._authUser$.next(null);
         // }
 
-    }    
+    }
 
 }
 
