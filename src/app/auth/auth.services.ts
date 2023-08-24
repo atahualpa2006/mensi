@@ -6,18 +6,22 @@ import { NotifierService } from "../core/services/notifier.service";
 import { Router } from "@angular/router";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { RepositionScrollStrategy } from "@angular/cdk/overlay";
+import { environment } from "src/environments/environment";
+import { Store } from "@ngrx/store";
+import { AuthActions } from "../store/auth/auth.actions";
 
 
 
 @Injectable ({ providedIn: 'root'})
 export class  AuthService {
 
-    private _authUser$ = new BehaviorSubject <User | null> (null);
-    public authUser$ = this._authUser$.asObservable();
+    // private _authUser$ = new BehaviorSubject <User | null> (null);
+    // public authUser$ = this._authUser$.asObservable();
 
     constructor (
         private notifier: NotifierService,
         private router: Router,
+        private store: Store,
         private httpClient:HttpClient ) {}
 
         isAuthenticated() : Observable <boolean> {
@@ -25,12 +29,19 @@ export class  AuthService {
             // take(1),
             // map((user) => !!user),
             // );
-            return this.httpClient.get <User[]> ('http://localhost:3000/users', {
+            return this.httpClient.get<User[]>(environment.baseApiUrl + '/users', {
+            // return this.httpClient.get <User[]> ('http://localhost:3000/users', {
                 params: {
                     token:localStorage.getItem('token') || '',
                 }
             } ).pipe(
                 map((userResult) => {
+
+                if (userResult.length){
+                  const authUser = userResult[0];
+                  // this._authUser$.next(authUser);
+                }
+
                     return !!userResult.length
                 })
             )
@@ -40,8 +51,8 @@ export class  AuthService {
 
 
         login (payLoad: loginPayload): void {
-
-            this.httpClient.get <User[]> ('http://localhost:3000/users', {
+               this.httpClient.get<User[]>(environment.baseApiUrl + '/users', {
+            // this.httpClient.get <User[]> ('http://localhost:3000/users', {
                 params: {
                     email: payLoad.email || '',
                     password: payLoad.password ||''
@@ -53,13 +64,15 @@ export class  AuthService {
                     if (response.length) {
                        const authUser = response[0];
                         // login valido
-                        this._authUser$.next(authUser);
+                        // this._authUser$.next(authUser);
+                        this.store.dispatch(AuthActions.setAuthUser({payload: authUser}))
                         this.router.navigate(['/dashboard/home']);
                         localStorage.setItem('token', authUser.token);
                     }else{
                     //   login invalido
                     this.notifier.showError('Email o contrasena invalida');
-                    this._authUser$.next(null);
+                    // this._authUser$.next(null);
+                    this.store.dispatch(AuthActions.setAuthUser({payload: null}))
 
                     }
                 },
@@ -97,5 +110,8 @@ export class  AuthService {
 
     }
 
+    public logout (): void {
+      this.store.dispatch(AuthActions.setAuthUser({ payload: null}))
+     }
 }
 
