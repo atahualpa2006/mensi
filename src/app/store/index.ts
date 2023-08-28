@@ -7,6 +7,8 @@ import { AuthState, authFeatureKey, authReducer } from "./auth/auth.reducer";
 export interface AppState {
   [authFeatureKey]: AuthState;
 
+
+
 }
 
 

@@ -22,7 +22,7 @@ import { ResaltadoDirective } from './directives/resaltado.directive';
   ],
   imports: [
     CommonModule,
-  
+
   ],
 
   exports:[
@@ -36,7 +36,7 @@ import { ResaltadoDirective } from './directives/resaltado.directive';
     MatTableModule,
     FullNamePipe,
     ResaltadoDirective
-   
+
 
   ]
 })

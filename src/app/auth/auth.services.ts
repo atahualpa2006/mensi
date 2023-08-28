@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { loginPayload } from "./models";
 import { User } from "../dashboard/pages/users/models";
-import { BehaviorSubject, Observable, map, take } from "rxjs";
+import { BehaviorSubject, Observable, map, take, observable } from 'rxjs';
 import { NotifierService } from "../core/services/notifier.service";
 import { Router } from "@angular/router";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
@@ -21,28 +21,27 @@ export class  AuthService {
     constructor (
         private notifier: NotifierService,
         private router: Router,
-        private store: Store,
-        private httpClient:HttpClient ) {}
+        private httpClient:HttpClient,
+        private store: Store, ) {}
 
         isAuthenticated() : Observable <boolean> {
-            // return this.authUser$.pipe(
-            // take(1),
-            // map((user) => !!user),
-            // );
+
             return this.httpClient.get<User[]>(environment.baseApiUrl + '/users', {
             // return this.httpClient.get <User[]> ('http://localhost:3000/users', {
                 params: {
-                    token:localStorage.getItem('token') || '',
+                    token: localStorage.getItem('token') || '',
                 }
+
             } ).pipe(
-                map((userResult) => {
+                map((usersResult) => {
 
-                if (userResult.length){
-                  const authUser = userResult[0];
+                if (usersResult.length) {
+                  const authUser = usersResult[0];
                   // this._authUser$.next(authUser);
+                this.store.dispatch(AuthActions.setAuthUser({payload: authUser}));
                 }
 
-                    return !!userResult.length
+                    return !!usersResult.length
                 })
             )
 
@@ -65,8 +64,10 @@ export class  AuthService {
                        const authUser = response[0];
                         // login valido
                         // this._authUser$.next(authUser);
-                        this.store.dispatch(AuthActions.setAuthUser({payload: authUser}))
+                        this.store.dispatch(AuthActions.setAuthUser({payload: authUser}));
+
                         this.router.navigate(['/dashboard/home']);
+
                         localStorage.setItem('token', authUser.token);
                     }else{
                     //   login invalido
@@ -110,8 +111,9 @@ export class  AuthService {
 
     }
 
-    public logout (): void {
-      this.store.dispatch(AuthActions.setAuthUser({ payload: null}))
-     }
+    public logout(): void {
+      this.store.dispatch(AuthActions.setAuthUser({ payload:null}))
+
+   }
 }
 

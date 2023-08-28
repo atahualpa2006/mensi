@@ -1,3 +1,4 @@
+
 import { NgModule } from "@angular/core"
 import { HomeComponent } from "./pages/home/home.component";
 import { UsersComponent } from "./pages/users/users.component";
@@ -6,27 +7,31 @@ import { AlumnsComponent } from "./pages/alumns/alumns.component";
 import { RouterModule } from "@angular/router";
 import { FoldersComponent } from "./pages/folders/folders.component";
 
+
+
 @NgModule  ({
 imports:[
-    RouterModule.forChild([  
-    { 
+    RouterModule.forChild([
+    {
     path: 'home',
     component: HomeComponent,
 
     },
     {
     path: 'users',
-    loadChildren:()=> import ('./pages/users/users.module').then(m => m.UsersModule), 
-    }, 
-  
+    loadChildren:()=> import ('./pages/users/users.module').then(m => m.UsersModule),
+    },
+
     {
     path: 'alumns',
     loadChildren: () => import ('./pages/alumns/alumns.module').then ((m) => m.AlumnsModule),
-    },  
+    },
+
+
     {
     path:'folders',
     loadChildren:() => import ('./pages/folders/folders.module').then((m) => m.FoldersModule),
-    }, 
+    },
     {
     path: '**',
     redirectTo: 'home',
@@ -38,7 +43,7 @@ imports:[
 exports: [RouterModule]
 
 })
- 
+
 export class DashboardRoutingModule{}
 
 
