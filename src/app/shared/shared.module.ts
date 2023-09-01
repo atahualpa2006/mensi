@@ -10,6 +10,7 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { FullNamePipe } from './pipes/full-name.pipe';
 import { ResaltadoDirective } from './directives/resaltado.directive';
+import { MatSelectModule } from '@angular/material/select'
 
 
 
@@ -35,7 +36,8 @@ import { ResaltadoDirective } from './directives/resaltado.directive';
     MatDialogModule,
     MatTableModule,
     FullNamePipe,
-    ResaltadoDirective
+    ResaltadoDirective,
+    MatSelectModule,
 
 
   ]

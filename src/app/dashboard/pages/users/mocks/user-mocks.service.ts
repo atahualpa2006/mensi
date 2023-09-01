@@ -11,11 +11,12 @@ export class UserMockService{
             email:'falso@.com',
             password:'falso',
             token:'',
+            role:'ADMINISTRADOR',
           },
-       
+
 
         ];
-   
+
     getUsers() : User [] {
         return this.users;
       }

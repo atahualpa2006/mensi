@@ -12,30 +12,33 @@ import { User } from '../../models';
 export class UserFormDialogComponent {
   editUser?: User;
   nameControl = new FormControl <string | null> (null, [
-    Validators.required, 
+    Validators.required,
     Validators.minLength(2),
     noHomeroValidator()]);
 
   surnameControl = new FormControl <string | null>(null, [
-    Validators.required, 
+    Validators.required,
     Validators.minLength(2)]);
 
-  emailControl = new FormControl <string | null>(null, 
+  emailControl = new FormControl <string | null>(null,
     Validators.required);
 
   passwordControl = new FormControl <string | null>(null,
     Validators.required);
-    
+
+  roleControl = new FormControl <string |null>(null, [Validators.required]);
+
   userForm = new FormGroup ({
-    
+
   name:this.nameControl,
   surname:this.surnameControl,
   email:this.emailControl,
-  password:this.passwordControl
-  
+  password:this.passwordControl,
+  role:this.roleControl,
+
 
   });
-  
+
 
 
 constructor(
@@ -49,6 +52,7 @@ constructor(
       this.surnameControl.setValue(this.data.surname);
       this.emailControl.setValue(this.data.email);
       this.passwordControl.setValue(this.data.password);
+      this.roleControl.setValue(this.data.role)
 
     }
   }

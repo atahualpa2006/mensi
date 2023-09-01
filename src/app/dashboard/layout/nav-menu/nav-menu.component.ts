@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../auth/auth.services';
+import { Store } from '@ngrx/store';
+import { Observable, observable } from 'rxjs';
+import { selectAuthUserRole } from 'src/app/store/auth/auth.selector';
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,7 +12,15 @@ import { AuthService } from '../../../auth/auth.services';
 })
 export class NavMenuComponent {
 
-  constructor(private router: Router, private authService: AuthService) {}
+public role$: Observable <'ADMINISTRADOR' | 'USUARIO'| undefined>;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private store: Store
+    ) {
+      this.role$ = this.store.select (selectAuthUserRole)
+    }
 
   logout():void {
 

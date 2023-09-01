@@ -6,15 +6,8 @@
       "password": "1",
       "surname": "usuario",
       "token": "QY1jsOYhslsYEYllT87a",
+      "role":"USUARIO",
       "id": 1
-    },
-    {
-      "name": "usuario",
-      "email": "usuario@gmail.com",
-      "password": "1",
-      "surname": "usuario",
-      "token": "TY45k6Q9Ohd36688g0Ol",
-      "id": 2
     },
     {
       "name": "administrador",
@@ -22,10 +15,13 @@
       "password": "123",
       "surname": "admin",
       "token": "UE03ghIU8Yl6k7QPEW70",
-      "id": 3
+      "role":"ADMINISTRADOR",
+      "id": 2
     }
   ],
   "alumns": [
-    {}
+    {
+
+    }
   ]
 }
