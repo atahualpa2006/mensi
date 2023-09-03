@@ -63,7 +63,14 @@ constructor(
       this.userForm.markAllAsTouched();
 
     } else {
-      this.dialogRef.close(this.userForm.value);
+      const payload: any = {
+        ...this.userForm.value
+      }
+
+      if (this.editUser ) {
+        payload ['token'] =this.editUser.token;
+      }
+      this.dialogRef.close(payload);
     }
   }
   }

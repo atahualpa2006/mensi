@@ -13,6 +13,7 @@ export interface CreateUserData {
   surname: string;
   email: string;
   password: string;
+
 }
 
 export interface UpDateUserData {
@@ -20,4 +21,5 @@ export interface UpDateUserData {
   surname?: string;
   email?: string;
   password?: string;
+  token?:string;
 }

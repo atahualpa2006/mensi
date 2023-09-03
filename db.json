@@ -2,26 +2,24 @@
   "users": [
     {
       "name": "usuario",
+      "surname": "usuario",
       "email": "usuario@gmail.com",
       "password": "1",
-      "surname": "usuario",
-      "token": "QY1jsOYhslsYEYllT87a",
-      "role":"USUARIO",
+      "role": "USUARIO",
+      "token": "25U3gRQg0Efk97kkk87i",
       "id": 1
     },
     {
       "name": "administrador",
+      "surname": "admin",
       "email": "ad@gmail.com",
       "password": "123",
-      "surname": "admin",
-      "token": "UE03ghIU8Yl6k7QPEW70",
-      "role":"ADMINISTRADOR",
+      "role": "ADMINISTRADOR",
+      "token": "25U3gRQg0Efk9741887i",
       "id": 2
     }
   ],
   "alumns": [
-    {
-
-    }
+    {}
   ]
 }
