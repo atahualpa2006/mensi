@@ -3,7 +3,7 @@
     <a routerLink="home" mat-list-item  >Inicio</a>
     <a *ngIf="(role$ |async) === 'ADMINISTRADOR'" routerLink="users" mat-list-item>Usuarios</a>
     <a routerLink="alumns" mat-list-item>Alumnos</a>
-    <!-- <a routerLink="courses" mat-list-item>Cursos</a> -->
     <a routerLink="folders" mat-list-item>cursos</a>
+    <a routerLink="inscriptions" mat-list-item>Inscripciones</a>
     <a (click)="logout()" mat-list-item>Cerrar Sesion</a>
   </mat-nav-list>

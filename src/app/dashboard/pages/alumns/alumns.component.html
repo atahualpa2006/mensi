@@ -1,7 +1,7 @@
 
 <h1  style="color: rgb(72, 15, 194) ;">Alumnos</h1>
 
-<button  (click)="onCreate" mat-flat-button color="warn" type="button" >
+<button  (click)="onCreate" mat-flat-button color="primary" type="button" >
   <mat-icon>add</mat-icon>
   Ingresar alumno
 </button>
@@ -33,10 +33,9 @@
     </ng-container>
 
 
-  
     <tr mat-header-row *matHeaderRowDef = "displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  
-  
+
+
 

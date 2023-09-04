@@ -9,7 +9,7 @@ import { Observable, observable } from 'rxjs';
   styles: [
   ]
 })
-export class AlumnsComponent implements OnInit { 
+export class AlumnsComponent implements OnInit {
 
 public dataSource: Alumns []= [];
 
@@ -35,7 +35,7 @@ this.alumnService.getAlumns().subscribe({
 }
 
 onCreate(): void {
-  
+
 }
 
 }

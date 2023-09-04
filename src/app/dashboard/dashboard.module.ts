@@ -23,7 +23,8 @@ import { FoldersModule } from './pages/folders/folders.module';
   declarations: [
     DashboardComponent,
     NavMenuComponent,
-    ToolbarComponent
+    ToolbarComponent,
+
   ],
   imports: [
     CommonModule,
@@ -38,10 +39,11 @@ import { FoldersModule } from './pages/folders/folders.module';
     MatListModule,
     AuthModule,
     AlumnsModule,
+    FoldersModule,
     DashboardRoutingModule,
 
   ],
-   
+
   exports:[DashboardComponent],
 })
 export class DashboardModule { }

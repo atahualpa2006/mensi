@@ -9,7 +9,7 @@ export class AlumnService {
 
   private alumns$ = new BehaviorSubject <Alumns[]> ([]);
 
- 
+
 
   constructor() { }
 
@@ -24,9 +24,9 @@ loadAlumns(): void{
     {
       id:1,
       dni:11111111,
-      name:'marco',
-      surname:'polo',
-      career:'diseno grafico',
+      name:'josue',
+      surname:'baez',
+      career:'full stack',
     },
     {
       id:2,
@@ -34,6 +34,27 @@ loadAlumns(): void{
       name:'cosme',
       surname:'fulanito',
       career:'ingenieria nuclear',
+    },
+    {
+      id:3,
+      dni:33333333,
+      name:'ariel',
+      surname:'gonsalez',
+      career:'arquitecto',
+    },
+    {
+      id:4,
+      dni:44444444,
+      name:'german',
+      surname:'gomez',
+      career:'abogado',
+    },
+    {
+      id:5,
+      dni:55555555,
+      name:'diego',
+      surname:'alconada',
+      career:'perito tecnico',
     },
   ]);
 }
@@ -49,7 +70,7 @@ create(): void {
         name:'homero jimeno',
         surname:'simpson',
         career:'seguridad',
-        
+
       });
 
       this.alumns$.next(arrayActual);

@@ -14,8 +14,9 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     CommonModule,
     AlumnsRoutingModule,
+    MatTableModule,
     SharedModule,
-    
+
   ]
 })
 export class AlumnsModule { }

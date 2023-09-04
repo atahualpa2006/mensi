@@ -17,9 +17,111 @@
       "role": "ADMINISTRADOR",
       "token": "25U3gRQg0Efk9741887i",
       "id": 2
+    },
+    {
+      "name": "usuario2",
+      "email": "usuario2@gmail.com",
+      "password": "1",
+      "surname": "usuario2",
+      "token": "jl7s6P9f3h0U975l4UI4",
+      "id": 3
+    },
+    {
+      "name": "usuario3",
+      "email": "usuario3@gmail.com",
+      "password": "1",
+      "surname": "usuario3",
+      "token": "dYTEl0la0RfQsh7gj1QU",
+      "id": 4
+    },
+    {
+      "name": "dsfd",
+      "email": "dfad@dsfs",
+      "password": "dfdas",
+      "surname": "dsfdsf",
+      "token": "4kTIjsd5Rl649lQW79Qa",
+      "id": 5
     }
   ],
   "alumns": [
-    {}
+    {
+      "id": 1,
+      "dni": 11111111,
+      "name": "marco",
+      "surname": "polo",
+      "career": "diseno grafico"
+    },
+    {
+      "id": 2,
+      "dni": 22222222,
+      "name": "cosme",
+      "surname": "fulanito",
+      "career": "ingenieria nuclear"
+    },
+    {
+      " id": 3,
+      "dni": 33333333,
+      "name": "ariel",
+      "surname": "gonsalez",
+      " career": "arquitecto"
+    },
+    {
+      " id": 4,
+      "dni": 44444444,
+      "name": "german",
+      " surname": "gomez",
+      "career": "abogado"
+    },
+    {
+      "id": 5,
+      " dni": 55555555,
+      "name": "diego",
+      "surname": "alconada",
+      "career": "perito tecnico"
+    }
+  ],
+  "folder": [
+    {
+      "id": 1,
+      "name": "ingles"
+    },
+    {
+      "id": 2,
+      "name": "frances"
+    },
+    {
+      "id": 3,
+      "name": "portugues"
+    },
+    {
+      "id": 4,
+      "name": "espanol"
+    },
+    {
+      "id": 5,
+      "name": "chino"
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": 1,
+      "alumnId": 2,
+      "folderId": 2
+    },
+    {
+      "id": 2,
+      "alumnId": 1,
+      "folderId": 3
+    },
+    {
+      "id": 3,
+      "alumnId": 4,
+      "folderId": 2
+    },
+    {
+      "id": 4,
+      "alumnId": 3,
+      "folderId": 1
+    }
   ]
 }

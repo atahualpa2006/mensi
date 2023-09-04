@@ -34,6 +34,12 @@ imports:[
     path:'folders',
     loadChildren:() => import ('./pages/folders/folders.module').then((m) => m.FoldersModule),
     },
+
+    {
+      path:'inscriptions',
+      loadChildren:() => import ('./pages/inscriptions/inscriptions.module').then((m) => m.InscriptionsModule),
+      },
+
     {
     path: '**',
     redirectTo: 'home',

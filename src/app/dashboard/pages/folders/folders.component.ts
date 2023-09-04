@@ -4,6 +4,8 @@ import { FoldersActions } from './store/folders.actions';
 import { Observable } from 'rxjs';
 import { category } from './models'
 import { selectFoldersArray } from './store/folders.selectors';
+import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { selectAuthUserRole } from 'src/app/store/auth/auth.selector';
 
 @Component({
   selector: 'app-folders',
@@ -15,9 +17,13 @@ import { selectFoldersArray } from './store/folders.selectors';
 export class FoldersComponent implements OnInit  {
   folders$: Observable <category []>;
 
+public isAdmin$: Observable <any>
+
   constructor (private store:Store) {
 
     this.folders$ = this.store.select(selectFoldersArray);
+
+    this.isAdmin$ = this.store.select(selectAuthUserRole);
   }
 
   displayedColumns = ['id', 'name', 'actions']
