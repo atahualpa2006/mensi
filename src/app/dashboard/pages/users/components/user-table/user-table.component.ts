@@ -16,6 +16,10 @@ export class UserTableComponent {
     'actions',
   ];
 
+
+
+
+
   @Input()
   dataSource: User[] = [];
 
@@ -34,3 +38,6 @@ export class UserTableComponent {
     localStorage.setItem('userData', objectString);
   }
 }
+
+
+

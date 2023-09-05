@@ -6,6 +6,7 @@ import { InscriptionActions } from './inscription.actions';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IncriptionWhithAlumnAndFolder } from '../models';
+import { AlumnService } from '../../alumns/alumn.service';
 
 
 @Injectable()
@@ -23,6 +24,25 @@ export class InscriptionEffects {
       )
     );
   });
+
+
+  // loadAlumnOptions$= createEffect(() => {
+  //   return this.actions$.pipe(
+
+  //     ofType(InscriptionActions.loadAlumnsOptions),
+
+
+  //     concatMap(() =>
+
+  //       this.getInscriptionFromDB().pipe(
+  //         map(data => InscriptionActions.loadAlumnsOptionsSucces({ data })),
+  //         catchError(error => of(InscriptionActions.loadAlumnsOptionsFailure({ error }))))
+  //     )
+  //   );
+  // });
+
+
+
 
 
   constructor(private actions$: Actions, private httpClient: HttpClient ) {}

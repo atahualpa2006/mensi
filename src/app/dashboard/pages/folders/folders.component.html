@@ -1,7 +1,11 @@
 
 <table mat-table [dataSource]="(folders$ | async) || []">
 
-.
+  <button  (click)="onCreate" mat-flat-button color="primary" type="button" >
+    <mat-icon>add</mat-icon>
+    Ingresar CURSO
+  </button>
+
 
 <ng-container matColumnDef="id">
   <th mat-header-cell *matHeaderCellDef>ID</th>
